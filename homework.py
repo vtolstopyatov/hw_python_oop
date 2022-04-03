@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import ClassVar, Tuple, List
+from typing import ClassVar, Tuple, List, Dict, Type
 
 
 @dataclass
@@ -110,9 +110,9 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    package_dict = {'RUN': Running,
-                    'SWM': Swimming,
-                    'WLK': SportsWalking, }
+    package_dict: Dict[str, Type[Training]] = {'RUN': Running,
+                                               'SWM': Swimming,
+                                               'WLK': SportsWalking, }
     new_object = package_dict[workout_type](*data)
     return new_object
 
